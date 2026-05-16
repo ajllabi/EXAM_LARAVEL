@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\student;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class StudentController extends Controller
 {
@@ -13,12 +16,14 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        return view('index', compact('students'));
+        //$students = Student::all();
+        $students = Student::paginate(9);
+        return view('students.index', compact('students'));
     }
 
     // public function students(){
-    //     return view('/students');
+    //     $students = Student::all();
+    //     return view('students.index', compact('students'));
     // }
 
     /**
@@ -26,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('students.create');
     }
 
     /**
@@ -35,9 +40,9 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-        'name' => 'required|max:255',
-        'email' => 'required|max:255',
-        'phone' => 'required',
+        'name' => 'required|max:32',
+        'email' => 'required|required|email|unique:users|max:100',
+        'phone' => 'required|digits_between:8,10',
         'section' => 'required',
         'image' => 'required|image|mimes:jpg,jpeg,png,gif,svg',
         ]);
@@ -50,15 +55,16 @@ class StudentController extends Controller
 
         $students = Student::create($validateData);
 
-       return redirect('/students');
+       return redirect('/students')->with('success', 'Student Created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(string $id)
     {   
-        return view('show', compact('student'));
+        $student = Student::findOrFail($id);
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -67,18 +73,18 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $student = Student::findOrFail($id);
-        return view('edit', compact('student'));
+        return view('students.edit', compact('student'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $validateData = $request->validate([
-        'name' => 'required|max:255',
-        'email' => 'required|max:255',
-        'phone' => 'required',
+        'name' => 'required|max:32',
+        'email' => 'required|required|email|unique:users|max:100',
+        'phone' => 'required|digits_between:8,10',
         'section' => 'required',
         'image' => 'required|image|mimes:jpg,jpeg,png,gif,svg',
         ]);
@@ -89,18 +95,19 @@ class StudentController extends Controller
         $image->move($destinationPath, $profileImage);
         $validateData['image'] = $profileImage;
 
-        $students = Student::update($validateData);
+        $student = Student::find($id);
+        $student->update($validateData);
 
-       return redirect('/students');
-    }
+       return redirect('/students')->with('success', 'Student updated successfully!');
+    } //->with('success', 'Student Created successfully!');
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $student = Student::findOrFail($id);
         $student->delete();
-        return redirect('/student')->with('success', 'Student supprimer avec succèss');
+        return redirect('students')->with('success', 'Student supprimer avec succèss');
     }
 }

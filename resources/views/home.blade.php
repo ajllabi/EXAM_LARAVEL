@@ -4,8 +4,7 @@
 <table border="0" style="width:800px; margin:50px;">
     <tr>
         <td>
-            <img src="img/student.jpg" width="175" height="175">
-            
+            <a href="{{ url('/students')}}"><img src="img/student.jpg" width="175" height="175"></a> 
         </td>
 
         <td>

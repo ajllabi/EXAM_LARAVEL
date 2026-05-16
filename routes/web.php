@@ -7,10 +7,15 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('students', StudentController::class);
-//Route::get('/students', [StudentController::class, 'inedx'])->name('inedx');
+// Route::get('/home', function () {
+//     return view('home');
+// });
+
+
+Route::resource('/students', StudentController::class);
+//Route::get('/students', [StudentController::class, 'students'])->name('students');
 
 // For showing a single student
-Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
+Route::get('/student/{id}', [StudentController::class, 'show'])->name('students.show');
 
-Route::get('/student/{id}', [StudentController::class, 'edit'])->name('student.edit');
+Route::get('/student/{id}/', [StudentController::class, 'edit'])->name('students.edit');

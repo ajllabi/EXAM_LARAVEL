@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\student;
+use App\Models\Teacher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class StudentController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,14 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //$students = Student::all();
-        $students = Student::paginate(9);
-        return view('students.index', compact('students'));
+        //$Teachers = Teacher::all();
+        $teachers = teacher::paginate(9);
+        return view('teachers.index', compact('teachers'));
     }
 
-    // public function students(){
-    //     $students = Student::all();
-    //     return view('students.index', compact('students'));
+    // public function Teachers(){
+    //     $Teachers = Teacher::all();
+    //     return view('Teachers.index', compact('Teachers'));
     // }
 
     /**
@@ -31,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('teachers.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class StudentController extends Controller
         $image->move($destinationPath, $profileImage);
         $validateData['image'] = $profileImage;
 
-        $students = Student::create($validateData);
+        $Teachers = Teacher::create($validateData);
 
-       return redirect('/students')->with('success', 'Student Created successfully!');
+       return redirect('/teachers')->with('success', 'Teacher Created successfully!');
     }
 
     /**
@@ -63,8 +63,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {   
-        $student = Student::findOrFail($id);
-        return view('students.show', compact('student'));
+        $teacher = Teacher::findOrFail($id);
+        return view('teachers.show', compact('teacher'));
     }
 
     /**
@@ -72,8 +72,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $student = Student::findOrFail($id);
-        return view('students.edit', compact('student'));
+        $teacher = Teacher::findOrFail($id);
+        return view('teachers.edit', compact('teacher'));
     }
 
     /**
@@ -95,19 +95,19 @@ class StudentController extends Controller
         $image->move($destinationPath, $profileImage);
         $validateData['image'] = $profileImage;
 
-        $student = Student::find($id);
-        $student->update($validateData);
+        $teacher = Teacher::find($id);
+        $teacher->update($validateData);
 
-       return redirect('/students')->with('success', 'Student updated successfully!');
-    } //->with('success', 'Student Created successfully!');
+       return redirect('/teachers')->with('success', 'Teacher updated successfully!');
+    } //->with('success', 'Teacher Created successfully!');
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id): RedirectResponse
     {
-        $student = Student::findOrFail($id);
-        $student->delete();
-        return redirect('students')->with('success', 'Student successfully deleted');
+        $teacher = Teacher::findOrFail($id);
+        $teacher->delete();
+        return redirect('teachers')->with('success', 'Teacher supprimer avec succèss');
     }
 }

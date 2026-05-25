@@ -44,24 +44,21 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://getbootstrap.com/">News</a>
+            <a class="nav-link active" aria-current="page" href="{{ url('/maintenance')}}">News</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="{{ url('/maintenance')}}">About Us</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Archives</a>
+            <a class="nav-link" href="{{ url('/maintenance')}}">Archives</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Courses</a>
+            <a class="nav-link" href="{{ url('/courses')}}">Courses</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Library</a>
+            <a class="nav-link" href="{{ url('/maintenance')}}">Projects</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -69,18 +66,18 @@
               Formations
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Web Developpement</a></li>
-              <li><a class="dropdown-item" href="#">Mobile Developpement</a></li>
+              <li><a class="dropdown-item" href="{{ url('/maintenance')}}">Web Developpement</a></li>
+              <li><a class="dropdown-item" href="{{ url('/maintenance')}}">Mobile Developpement</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Desktop Developpement</a></li>
-              <li><a class="dropdown-item" href="#">Data Sciences</a></li>
+              <li><a class="dropdown-item" href="{{ url('/maintenance')}}">Desktop Developpement</a></li>
+              <li><a class="dropdown-item" href="{{ url('/maintenance')}}">Data Sciences</a></li>
 
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="{{ url('/maintenance')}}">Contact Us</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -103,31 +100,27 @@
 
         <div class="sidebar">
           <header>Main Menu</header>
-          <a href="{{ url('/students')}}" class="active">
+          <a href="{{ url('/students')}}" >
             <i class="fas fa-qrcode"></i>
             <span>Manage Students</span>
           </a>
-          <a href="#">
+          <a href="{{ url('/teachers')}}" >
             <i class="fas fa-link"></i>
-            <span>Shortcuts</span>
+            <span>Manage Teachers</span>
           </a>
-          <a href="#">
+          <a href="{{ url('/courses')}}">
             <i class="fas fa-stream"></i>
-            <span>Overview</span>
+            <span>Manage Courses</span>
           </a>
-          <a href="#">
+          <a href="{{ url('/enrollments')}}">
             <i class="fas fa-calendar"></i>
-            <span>Events</span>
+            <span>Enrollment</span>
           </a>
-          <a href="#">
+          <a href="{{ url('/administrator')}}">
             <i class="far fa-question-circle"></i>
-            <span>About</span>
+            <span>Administrator</span>
           </a>
-          <a href="#">
-            <i class="fas fa-sliders-h"></i>
-            <span>Services</span>
-          </a>
-          <a href="#">
+          <a href="{{ url('/maintenance')}}">
             <i class="far fa-envelope"></i>
             <span>Contact</span>
           </a>
@@ -210,8 +203,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      © 2026 Copyright: Ecole Nationale des Sciences Appliquées - Licence ILSI 2026 - Ajellabi Mohamed
     </div>
     <!-- Copyright -->
   </footer>

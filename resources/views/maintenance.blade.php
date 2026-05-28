@@ -7,6 +7,7 @@
       <p>We apologize for any inconvenience.</p>
   </center>
       <div class="container-fluid p-0">
+        <img src="/image/LOGO-UIT-TRANSSP-07.png" class="resp" style="height: 318px;"><br>
         <img src="/image/modele-html-preview-307627.jpg" class="resp" style="height: 220px;">
       </div>
   </article>

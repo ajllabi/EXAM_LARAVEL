@@ -116,7 +116,7 @@
             <i class="fas fa-calendar"></i>
             <span>Enrollment</span>
           </a>
-          <a href="{{ url('/administrator')}}">
+          <a href="{{ url('/administrators')}}">
             <i class="far fa-question-circle"></i>
             <span>Administrator</span>
           </a>

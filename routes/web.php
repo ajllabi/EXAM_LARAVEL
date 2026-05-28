@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\AdministratorController;
 
 Route::get('/', function () {
     return view('home');
@@ -16,15 +17,11 @@ Route::get('/maintenance', function () {
 
 
 Route::resource('/students', StudentController::class);
-//Route::get('/students', [StudentController::class, 'students'])->name('students');
-
-// For showing a single student
-Route::get('/student/{id}', [StudentController::class, 'show'])->name('students.show');
-
-Route::get('/student/{id}/', [StudentController::class, 'edit'])->name('students.edit');
 
 Route::resource('/teachers', TeacherController::class);
 
 Route::resource('/courses', CourseController::class);
 
 Route::resource('/enrollments', EnrollmentController::class);
+
+Route::resource('/administrators', AdministratorController::class);

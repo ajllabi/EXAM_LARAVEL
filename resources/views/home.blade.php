@@ -17,7 +17,7 @@
         </td>
 
         <td>
-            <a href="{{ url('/maintenance')}}"><img src="img/administrator.png" width="175" height="175"></a>
+            <a href="{{ url('/administrators')}}"><img src="img/administrator.png" width="175" height="175"></a>
         </td>
     </tr>
 </table>

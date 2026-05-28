@@ -1,31 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\Teacher;
+use App\Models\Administrator;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 
-class TeacherController extends Controller
+class AdministratorController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $teachers = teacher::paginate(9);
-        return view('teachers.index', compact('teachers'));
+        $administrators = Administrator::paginate(9);
+        return view('administrators.index', compact('administrators'));        
     }
-
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('teachers.create');
+        return view('administrators.create');
     }
 
     /**
@@ -33,11 +32,12 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-        'name' => 'required|max:32',
+      $validateData = $request->validate([
+        'fullname' => 'required|max:32',
+        'user' => 'required|max:20',
         'email' => 'required|required|email|unique:users|max:100',
         'phone' => 'required|digits_between:8,10',
-        'section' => 'required',
+        'city' => 'required',
         'image' => 'required|image|mimes:jpg,jpeg,png,gif,svg',
         ]);
 
@@ -47,18 +47,18 @@ class TeacherController extends Controller
         $image->move($destinationPath, $profileImage);
         $validateData['image'] = $profileImage;
 
-        $Teachers = Teacher::create($validateData);
+        $administrators = Administrator::create($validateData);
 
-       return redirect('/teachers')->with('success', 'Teacher Created successfully!');
+        return redirect('/administrators')->with('success', 'Administrator Created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    {   
-        $teacher = Teacher::findOrFail($id);
-        return view('teachers.show', compact('teacher'));
+    {
+        $administrator = Administrator::findOrFail($id);
+        return view('administrators.show', compact('administrator'));
     }
 
     /**
@@ -66,20 +66,21 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        $teacher = Teacher::findOrFail($id);
-        return view('teachers.edit', compact('teacher'));
+        $administrator = Administrator::findOrFail($id);
+        return view('administrators.edit', compact('administrator'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, string $id)
     {
         $validateData = $request->validate([
-        'name' => 'required|max:32',
+        'fullname' => 'required|max:32',
+        'user' => 'required|max:20',
         'email' => 'required|required|email|unique:users|max:100',
         'phone' => 'required|digits_between:8,10',
-        'section' => 'required',
+        'city' => 'required',
         'image' => 'required|image|mimes:jpg,jpeg,png,gif,svg',
         ]);
 
@@ -88,20 +89,19 @@ class TeacherController extends Controller
         $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
         $image->move($destinationPath, $profileImage);
         $validateData['image'] = $profileImage;
-
-        $teacher = Teacher::find($id);
-        $teacher->update($validateData);
-
-       return redirect('/teachers')->with('success', 'Teacher updated successfully!');
-    } //->with('success', 'Teacher Created successfully!');
+        
+        $administrator = Administrator::find($id);
+        $administrator->update($validateData);
+        return redirect('/administrators')->with('success', 'Administrator updated successfully!');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id)
     {
-        $teacher = Teacher::findOrFail($id);
-        $teacher->delete();
-        return redirect('teachers')->with('success', 'Teacher supprimer avec succèss');
+        $administrator = Administrator::findOrFail($id);
+        $administrator->delete();
+        return redirect('administrators')->with('success', 'Administrator successfully deleted');
     }
 }

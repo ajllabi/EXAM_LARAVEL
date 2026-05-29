@@ -44,7 +44,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url('/maintenance')}}">News</a>
+            <a class="nav-link active" aria-current="page" href="{{ url('/profile')}}">Edite Profile</a>
           </li>
 
           <li class="nav-item">
@@ -77,7 +77,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/maintenance')}}">Contact Us</a>
+            <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
           </li>
         </ul>
         <form class="d-flex">
